@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
       <a
         href={SITE_CONFIG.INSTAGRAM_URL}
         target="_blank"
-        className="bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-sky-100 hover:scale-105 transition-transform"
+        className="bg-primary text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform"
       >
         Let's Connect
       </a>

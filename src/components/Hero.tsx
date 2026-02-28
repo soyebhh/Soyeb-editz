@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
   return (
     <section ref={scope} className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden pt-20">
       {/* Background Decor */}
-      <div className="ig-ring absolute w-[500px] h-[500px] border-[1px] border-slate-100 rounded-[60px] -z-10 opacity-50" />
+      <div className="ig-ring absolute w-[500px] h-[500px] border-[1px] border-white/5 rounded-[60px] -z-10 opacity-30" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-primary/5 blur-[120px] -z-10" />
 
       <div className="hero-content text-center max-w-4xl">
@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
           <a
             href={SITE_CONFIG.INSTAGRAM_URL}
             target="_blank"
-            className="px-8 py-4 border-2 border-slate-100 rounded-2xl font-bold hover:bg-slate-50 transition-all"
+            className="px-8 py-4 border-2 border-white/10 rounded-2xl font-bold hover:bg-white/5 transition-all text-white/80 hover:text-white"
           >
             DM on Instagram
           </a>

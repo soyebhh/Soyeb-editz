@@ -25,7 +25,7 @@ const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
           e.preventDefault();
           setIsMuted(!isMuted);
         }}
-        className="absolute bottom-4 right-4 p-2.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white transition-all hover:bg-white/20 active:scale-90 z-20"
+        className="absolute bottom-4 right-4 p-2.5 rounded-full bg-slate-950/20 backdrop-blur-xl border border-white/10 text-white transition-all hover:bg-slate-950/40 active:scale-90 z-20"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
         {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
@@ -75,7 +75,7 @@ export const ReelEmbed: React.FC = () => {
         {/* Unique Staggered Grid */}
         <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-6 lg:gap-8">
           {SITE_CONFIG.REEL_URLS.map((url, i) => {
-            const isVideo = url.match(/\.(mp4|webm|ogg)$/) || url.includes('mixkit.co');
+            const isVideo = url.match(/\.(mp4|webm|ogg)$/i) || url.includes('mixkit.co');
 
             // Staggering logic for mobile/tablet unique look
             const staggerClass = i % 2 === 0 ? "sm:translate-y-12" : "sm:-translate-y-4";
@@ -86,7 +86,7 @@ export const ReelEmbed: React.FC = () => {
                 className={`reel-card relative group transition-all duration-700 opacity-50 scale-95 ${staggerClass}`}
               >
                 {/* Accent Glow Ring (Hero State) */}
-                <div className="absolute -inset-[2px] rounded-[34px] bg-ig-gradient opacity-0 scale-95 group-[.reel-active]:opacity-100 group-[.reel-active]:scale-100 transition-all duration-500 blur-sm" />
+                <div className="absolute -inset-[2px] rounded-[34px] bg-ig-gradient opacity-0 scale-95 group-[.reel-active]:opacity-40 group-[.reel-active]:scale-100 transition-all duration-500 blur-sm" />
 
                 <div className="relative rounded-[32px] overflow-hidden p-0 shadow-2xl border border-white/10 aspect-[9/16] z-10 transition-transform duration-500 group-[.reel-active]:-translate-y-2">
                   {isVideo ? (
