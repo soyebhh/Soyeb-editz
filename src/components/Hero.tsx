@@ -43,7 +43,7 @@ export const Hero: React.FC = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('reels')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:shadow-xl transition-all"
           >
             View Work
