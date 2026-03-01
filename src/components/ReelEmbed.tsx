@@ -40,7 +40,7 @@ const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
           setIsMuted(!isMuted);
           setShowHint(false);
         }}
-        className="absolute bottom-4 right-4 p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white transition-all hover:bg-white/20 active:scale-90 z-20"
+        className="absolute bottom-4 right-4 p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white transition-all hover:bg-white/20 z-20"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
         {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
@@ -134,7 +134,7 @@ export const ReelEmbed: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => scrollToIndex(Math.max(0, activeIndex - 1))}
-                  className="p-3 md:p-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-primary/20 hover:border-primary/40 active:scale-95 transition-all disabled:opacity-20 disabled:cursor-not-allowed group"
+                  className="p-3 md:p-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-primary/20 hover:border-primary/40 active:opacity-70 transition-all disabled:opacity-20 disabled:cursor-not-allowed group"
                   disabled={activeIndex === 0}
                   aria-label="Previous Reel"
                 >
@@ -150,7 +150,7 @@ export const ReelEmbed: React.FC = () => {
 
                 <button
                   onClick={() => scrollToIndex(Math.min(SITE_CONFIG.REEL_URLS.length - 1, activeIndex + 1))}
-                  className="p-3 md:p-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-primary/20 hover:border-primary/40 active:scale-95 transition-all disabled:opacity-20 disabled:cursor-not-allowed group"
+                  className="p-3 md:p-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white hover:bg-primary/20 hover:border-primary/40 active:opacity-70 transition-all disabled:opacity-20 disabled:cursor-not-allowed group"
                   disabled={activeIndex === SITE_CONFIG.REEL_URLS.length - 1}
                   aria-label="Next Reel"
                 >
@@ -176,7 +176,7 @@ export const ReelEmbed: React.FC = () => {
             return (
               <div
                 key={i}
-                className={`reel-card flex-shrink-0 w-[85vw] sm:w-[45vw] md:w-auto snap-center relative group transition-all duration-700 opacity-40 scale-90 ${staggerClass}`}
+                className={`reel-card flex-shrink-0 w-[85vw] sm:w-[45vw] md:w-auto snap-center relative group transition-all duration-700 opacity-40 ${staggerClass}`}
               >
                 {/* Accent Glow Ring */}
                 <div className="absolute -inset-[3px] rounded-[35px] bg-ig-gradient opacity-0 scale-95 group-[.reel-active]:opacity-50 group-[.reel-active]:scale-100 transition-all duration-700 blur-[6px]" />
@@ -226,11 +226,10 @@ export const ReelEmbed: React.FC = () => {
         .reel-card.reel-active {
           z-index: 30;
           opacity: 1 !important;
-          transform: scale(1);
         }
         @media (max-width: 767px) {
            .reel-card.reel-active {
-            transform: scale(1.02);
+            transform: none;
           }
         }
       `}</style>

@@ -12,11 +12,11 @@ export const SITE_CONFIG = {
   },
   REEL_URLS: [
     { url: "/reel2.mp4" },
-    { url: "/reel5.mp4" },
+    { url: "/reel5.MP4" },
     { url: "/reel3.mp4" },
     { url: "/reel1.mp4" },
-    { url: "/reel4.mp4" },
-    
+    { url: "/reel4.MP4" },
+
   ],
   BRANDS: [
     { name: "Brand Alpha", logo: "https://placehold.co/150x50/333/fff?text=BRAND+A" },
