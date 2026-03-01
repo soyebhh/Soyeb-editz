@@ -8,15 +8,15 @@ export const SITE_CONFIG = {
   SEO: {
     title: "Soyeb Visuals | Viral Instagram Reel Creator & Professional Cinematographer Mumbai",
     description: "Boost your brand with scroll-stopping, viral Instagram Reels. Soyeb Khan - Leading professional video creator and cinematographer in Mumbai, specializing in high-impact visual storytelling.",
-    canonical: "https://soyebhx.com",
+    canonical: "https://soyeb.in",
   },
   REEL_URLS: [
-    "/reel3.mp4",
-    "/reel2.mp4",
-    "/reel1.mp4",
-    "/reel4.MP4",
-    "/reel5.MP4",
-    "/reel6.MP4",
+    { url: "/reel2.mp4" },
+    { url: "/reel5.mp4" },
+    { url: "/reel3.mp4" },
+    { url: "/reel1.mp4" },
+    { url: "/reel4.mp4" },
+    
   ],
   BRANDS: [
     { name: "Brand Alpha", logo: "https://placehold.co/150x50/333/fff?text=BRAND+A" },
