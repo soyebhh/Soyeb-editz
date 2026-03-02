@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://soyebhx.com/sitemap.xml
+Sitemap: https://soyeb.in/sitemap.xml
