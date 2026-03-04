@@ -1,6 +1,7 @@
 export const SITE_CONFIG = {
   NAME: "Soyeb Khan",
   BRAND: "Soyeb",
+  PROFILE_IMG: "/p1.JPG",
   INSTAGRAM_HANDLE: "@soyebhx",
   INSTAGRAM_URL: "https://www.instagram.com/soyebhx/",
   PHONE: "+91 8828182372",
