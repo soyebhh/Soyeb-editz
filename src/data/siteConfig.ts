@@ -25,11 +25,7 @@ export const SITE_CONFIG = {
     { name: "Brand Gamma", logo: "https://placehold.co/150x50/333/fff?text=BRAND+C" },
   ],
   WORK: [
-    { id: 1, title: "Cinematic Reel", url: "/grid1.jpeg", caption: "Color Graded & Shot in Mumbai" },
-    { id: 2, title: "Urban Cinematics", url: "https://images.unsplash.com/photo-1493238792040-d7141f15ef6e", caption: "Shot on Sony A7IV - Mumbai Streets" },
-    { id: 3, title: "Night Glow", url: "https://images.unsplash.com/photo-1514565131-fce0801e5785", caption: "Color Graded in Resolve" },
-    { id: 4, title: "Fashion Portrait", url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e", caption: "Studio Lighting Setup" },
-    { id: 5, title: "Action Sports", url: "https://images.unsplash.com/photo-1531415074968-036ba1b575da", caption: "High Shutter Speed Capture" },
-    { id: 6, title: "Food Aesthetics", url: "https://images.unsplash.com/photo-1476224483470-9c901eeff9a0", caption: "Macro Detail Shot" },
+    { id: 1, title: "Motion Story", url: "/grid-vid1.MP4", caption: "Cinematic Visuals • Mumbai", type: "video" },
+    { id: 2, title: "Static Impact", url: "/grid1.jpeg", caption: "Professional Photography", type: "image" },
   ]
 };
