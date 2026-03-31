@@ -22,10 +22,11 @@ function App() {
 
   useEffect(() => {
     if (reducedMotion) return;
-    const lenis = new Lenis();
-    // Lenis writes to window.scrollY on every RAF tick, so ScrollScene's
-    // useFrame can read window.scrollY directly with perfect sync.
-    lenis.on('scroll', ScrollTrigger.update);
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
+    });
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
     return () => {

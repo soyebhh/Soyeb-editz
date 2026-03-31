@@ -79,11 +79,26 @@
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent font-black;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary animate-pulse-slow font-black;
+}
+
+.anime-title {
+  @apply tracking-tighter uppercase italic leading-[0.85];
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(4px 4px 0px theme('colors.accent.900')) drop-shadow(8px 8px 0px rgba(0,0,0,0.5));
+}
+
+.text-glow {
+  text-shadow: 0 0 20px theme('colors.primary.DEFAULT'), 0 0 40px theme('colors.accent.DEFAULT');
+}
+
+.section-reveal {
+  opacity: 0;
+  transform: translateY(40px);
 }
 
 .cinematic-shadow {
-  box-shadow: 0 0 40px -12px rgba(14, 165, 233, 0.15);
+  box-shadow: 0 0 40px -12px rgba(239, 68, 68, 0.15);
 }
 
 .magnetic-wrap {

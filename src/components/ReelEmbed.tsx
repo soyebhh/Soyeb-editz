@@ -119,10 +119,24 @@ export const ReelEmbed: React.FC = () => {
           },
           y: 60,
           opacity: 0,
-          duration: 1.5,
+          duration: 1.2,
           ease: "power4.out"
         });
       }
+
+      // Card Stagger (Anime Pop)
+      gsap.from(".reel-card", {
+        scrollTrigger: {
+          trigger: ".reel-card",
+          start: "top 85%",
+        },
+        y: 100,
+        opacity: 0,
+        scale: 0.9,
+        stagger: 0.15,
+        duration: 1,
+        ease: "back.out(1.7)"
+      });
     }, sectionRef);
 
     // Throttled scroll handler for active index on mobile
@@ -160,8 +174,8 @@ export const ReelEmbed: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-10">
           <div className="space-y-4">
             <span className="text-primary font-black tracking-[0.4em] uppercase text-xs mb-3 block opacity-60">Portfolio Selection</span>
-            <h2 ref={titleRef} className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-none uppercase">
-              Viral <span className="text-primary italic opacity-90">Impact</span>
+            <h2 ref={titleRef} className="text-6xl md:text-9xl font-black text-white anime-title">
+              Viral <span className="text-gradient">Impact</span>
             </h2>
           </div>
 
@@ -208,7 +222,7 @@ export const ReelEmbed: React.FC = () => {
               >
                 {/* Dynamic Accent Glow — only render for visible cards */}
                 {visibleCards.has(i) && (
-                  <div className="absolute -inset-1 rounded-[40px] bg-gradient-to-tr from-primary/30 to-accent/30 opacity-20 blur-lg transition-opacity duration-700" />
+                  <div className="absolute -inset-1 rounded-[40px] bg-gradient-to-tr from-primary to-accent opacity-30 blur-2xl transition-opacity duration-700" />
                 )}
 
                 <div className="relative rounded-[36px] overflow-hidden p-0 cinematic-shadow border border-white/5 aspect-[9/16] z-10 transition-colors duration-500 group-hover:border-white/20">

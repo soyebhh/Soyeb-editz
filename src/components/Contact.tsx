@@ -22,8 +22,8 @@ export const Contact: React.FC = () => {
         },
         y: 60,
         opacity: 0,
-        duration: 1.5,
-        stagger: 0.2,
+        duration: 1.2,
+        stagger: 0.15,
         ease: 'power4.out'
       });
 
@@ -49,12 +49,12 @@ export const Contact: React.FC = () => {
     <section id="contact" ref={containerRef} className="py-32 md:py-52 px-6 overflow-hidden">
       <div className="max-w-5xl mx-auto glass-morphism rounded-[60px] md:rounded-[80px] p-12 md:p-32 text-center relative overflow-hidden">
         {/* Background glow */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 blur-[60px] rounded-full -z-10 animate-pulse-slow" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/10 blur-[60px] rounded-full -z-10" />
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 blur-[80px] rounded-full -z-10 animate-pulse-slow" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/20 blur-[80px] rounded-full -z-10" />
 
         <div className="contact-reveal space-y-6 mb-16">
-          <span className="text-primary font-black tracking-[0.4em] uppercase text-xs opacity-60">Ready to start?</span>
-          <h2 className="text-5xl md:text-8xl font-black leading-[0.9] text-white tracking-tighter uppercase italic">
+          <span className="text-primary font-black tracking-[0.4em] uppercase text-xs">Ready to ignite?</span>
+          <h2 className="text-5xl md:text-8xl font-black leading-[0.9] text-white anime-title">
             Let's build your <br /><span className="text-gradient">Social Presence.</span>
           </h2>
         </div>
