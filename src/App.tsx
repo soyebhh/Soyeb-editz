@@ -9,7 +9,6 @@ import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 
 import { Header }             from './components/Header';
 import { CanvasScrollHero }   from './components/CanvasScrollHero';
-import { PortfolioGrid }  from './components/PortfolioGrid';
 import { ReelEmbed }      from './components/ReelEmbed';
 import { Brands }         from './components/Brands';
 import { Contact }        from './components/Contact';
@@ -66,7 +65,7 @@ function App() {
           <main>
             <CanvasScrollHero />
             <ReelEmbed />
-            <PortfolioGrid />
+            {/* <PortfolioGrid /> */}
             <Brands />
             <Contact />
           </main>
