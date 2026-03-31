@@ -36,8 +36,9 @@ const MediaCard: React.FC<{
   };
 
   const isVideo = item.type === 'video';
-  const colSpan = "md:col-span-12"; // Always Full Width for maximum impact
-  const aspectRatio = index === 0 ? "aspect-video" : "aspect-[21/9] md:aspect-[3/1]";
+  // First item (Video) is full-width 16:9, Second item (Mobile style) is 9:16
+  const colSpan = index === 0 ? "md:col-span-12" : "md:col-span-6 md:col-start-4"; 
+  const aspectRatio = index === 0 ? "aspect-video" : "aspect-[9/16]";
 
   return (
     <div
@@ -45,8 +46,9 @@ const MediaCard: React.FC<{
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       onClick={onOpen}
+      aria-label={`View ${item.title}`}
     >
-      <div className={`tilt-inner relative w-full ${aspectRatio} rounded-[40px] md:rounded-[60px] overflow-hidden bg-black cinematic-shadow border border-white/5 transition-all group-hover:border-primary/20`}>
+      <div className={`tilt-inner relative w-full ${aspectRatio} rounded-[30px] md:rounded-[60px] overflow-hidden bg-black cinematic-shadow border border-white/5 transition-all group-hover:border-primary/20`}>
         {isVideo ? (
           <div className="relative w-full h-full">
             <video
@@ -93,16 +95,16 @@ const MediaCard: React.FC<{
           />
         )}
         
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+        {/* Overlay - Clearer for the video, more intense for the static image */}
+        <div className={`absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent transition-opacity duration-700 ${index === 0 ? 'opacity-30 group-hover:opacity-60' : 'opacity-60 group-hover:opacity-80'}`} />
         
         {/* Content */}
-        <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-          <div>
+        <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end transition-all duration-500">
+          <div className={`${index === 0 ? 'opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0' : 'opacity-100'}`}>
             <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2">{item.title}</h3>
             <p className="text-white/50 text-xs font-bold uppercase tracking-widest leading-relaxed max-w-[200px]">{item.caption}</p>
           </div>
-          <div className="mag-btn p-4 rounded-full glass-morphism text-white">
+          <div className="mag-btn p-4 rounded-full glass-morphism text-white opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
             <Maximize2 size={24} />
           </div>
         </div>

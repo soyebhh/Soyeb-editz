@@ -71,8 +71,9 @@ function App() {
           <Header />
           <main>
             <CanvasScrollHero />
+             <PortfolioGrid />
             <ReelEmbed />
-            <PortfolioGrid />
+           
             <Brands />
             <Contact />
           </main>
