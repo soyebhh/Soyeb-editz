@@ -199,16 +199,16 @@ export const CanvasScrollHero: React.FC = () => {
     <div ref={wrapperRef} className="relative w-full min-h-screen">
       {/* ── Loading overlay ─────────────────────────────────────────────── */}
       {!isLoaded && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
           {/* Animated brand name */}
-          <p className="text-primary font-black tracking-[0.4em] uppercase text-xs mb-8 animate-pulse">
+          <p className="text-primary font-black tracking-[0.4em] uppercase text-xs mb-8 animate-pulse text-glow">
             {SITE_CONFIG.BRAND} Visuals
           </p>
 
           {/* Progress bar */}
           <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
             <div
-              className="h-full bg-primary rounded-full transition-all duration-150"
+              className="h-full bg-primary rounded-full transition-all duration-150 shadow-[0_0_10px_theme(colors.primary.DEFAULT)]"
               style={{ width: `${Math.round(progress * 100)}%` }}
             />
           </div>
@@ -221,7 +221,7 @@ export const CanvasScrollHero: React.FC = () => {
       {/* ── Global Video Canvas Background ────────────────────────────── */}
       <canvas
         ref={canvasRef}
-        className="fixed top-0 left-0 w-screen h-screen block pointer-events-none -z-10"
+        className="fixed top-0 left-0 w-screen h-screen block pointer-events-none -z-10 bg-black"
       />
 
       {/* ── Text overlay (fades out as user scrolls) ──────────────────── */}
@@ -233,8 +233,8 @@ export const CanvasScrollHero: React.FC = () => {
           <div className="pointer-events-auto">
           {/* Profile avatar */}
           <div className="hero-item inline-block mb-8 md:mb-10">
-            <div className="relative inline-block p-1 rounded-full bg-gradient-to-tr from-primary to-accent shadow-[0_0_50px_rgba(252,211,77,0.3)]">
-              <div className="relative bg-slate-950/60 rounded-full p-2 overflow-hidden backdrop-blur-sm border border-white/10">
+            <div className="relative inline-block p-1 rounded-full bg-gradient-to-tr from-primary to-accent shadow-[0_0_50px_rgba(255,49,49,0.3)]">
+              <div className="relative bg-black rounded-full p-2 overflow-hidden backdrop-blur-sm border border-white/5">
                 <img
                   src={SITE_CONFIG.PROFILE_IMG}
                   width={144}
@@ -242,13 +242,13 @@ export const CanvasScrollHero: React.FC = () => {
                   fetchPriority="high"
                   loading="eager"
                   decoding="async"
-                  className="w-28 h-28 md:w-36 md:h-36 rounded-full object-cover grayscale transition-all duration-700 hover:grayscale-0"
+                  className="w-28 h-28 md:w-36 md:h-36 rounded-full object-cover transition-all duration-700 grayscale hover:grayscale-0"
                   alt={SITE_CONFIG.NAME}
                 />
               </div>
 
               {/* Status badge */}
-              <div className="hero-badge absolute -bottom-1 -right-1 md:bottom-1 md:right-1 flex items-center gap-2 px-3 py-1 bg-slate-900 border-2 border-primary rounded-full shadow-[0_0_20px_rgba(252,211,77,0.5)]">
+              <div className="hero-badge absolute -bottom-1 -right-1 md:bottom-1 md:right-1 flex items-center gap-2 px-3 py-1 bg-black border-2 border-primary rounded-full shadow-[0_0_20px_rgba(255,49,49,0.5)]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />

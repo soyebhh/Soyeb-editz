@@ -9,7 +9,20 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: "#FCD34D", // Vibrant Golden Flame
+          DEFAULT: "#FF3131", // Neon Red/Fire
+          50: '#fff1f1',
+          100: '#ffe1e1',
+          200: '#ffc7c7',
+          300: '#ffa0a0',
+          400: '#ff6969',
+          500: '#ff3131',
+          600: '#ed1515',
+          700: '#c80d0d',
+          800: '#a50e0e',
+          900: '#881212',
+        },
+        accent: {
+          DEFAULT: "#FCD34D", // Gold/Flame spark
           50: '#fffbeb',
           100: '#fef3c7',
           200: '#fde68a',
@@ -21,27 +34,16 @@ export default {
           800: '#92400e',
           900: '#78350f',
         },
-        accent: {
-          DEFAULT: "#EF4444", // Molten Orange-Red
-          50: '#fef2f2',
-          100: '#fee2e2',
-          200: '#fecaca',
-          300: '#fca5a5',
-          400: '#f87171',
-          500: '#ef4444',
-          600: '#dc2626',
-          700: '#b91c1c',
-          800: '#991b1b',
-          900: '#7f1d1d',
-        },
         slate: {
-          950: '#020617',
+          950: '#000000', // Pure Black for depth
+          900: '#0a0a0a',
+          800: '#171717',
         }
       },
       backgroundImage: {
         'ig-gradient': 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2397 75%, #323232 100%)',
         'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
-        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(252, 211, 77, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(239, 68, 68, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(185, 28, 28, 0.1) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(120, 53, 15, 0.1) 0px, transparent 50%)',
+        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(255, 49, 49, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(252, 211, 77, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 49, 49, 0.1) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(0, 0, 0, 1) 0px, transparent 50%)',
       },
       animation: {
         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',

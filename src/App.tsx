@@ -56,6 +56,11 @@ function App() {
         <Helmet>
           <title>{SITE_CONFIG.SEO.title}</title>
           <meta name="description" content={SITE_CONFIG.SEO.description} />
+          <meta property="og:title" content={SITE_CONFIG.SEO.title} />
+          <meta property="og:description" content={SITE_CONFIG.SEO.description} />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="/og-image.jpg" />
+          <meta name="twitter:card" content="summary_large_image" />
           <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         </Helmet>
 

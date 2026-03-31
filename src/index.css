@@ -22,19 +22,19 @@
   }
 
   body {
-    @apply font-sans antialiased text-slate-300 bg-slate-950 min-h-screen relative overflow-x-hidden;
+    @apply font-sans antialiased text-slate-300 bg-black min-h-screen relative overflow-x-hidden;
   }
 
   body::before {
     content: "";
-    @apply fixed inset-0 z-[-1] bg-mesh-gradient;
+    @apply fixed inset-0 z-[-1] bg-mesh-gradient opacity-40;
     will-change: auto;
   }
 
   /* Cinematic Grain — lightweight: no blur, no contrast filter */
   body::after {
     content: "";
-    @apply fixed inset-0 z-[9999] pointer-events-none opacity-[0.025];
+    @apply fixed inset-0 z-[9999] pointer-events-none opacity-[0.04];
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
   }
 
@@ -44,7 +44,7 @@
 }
 
 ::selection {
-  @apply bg-primary/30 text-white;
+  @apply bg-primary/40 text-white;
 }
 
 /* Custom Scrollbar for premium feel */
@@ -53,11 +53,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-slate-950;
+  @apply bg-black;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-800 rounded-full;
+  @apply bg-slate-900 rounded-full border border-white/5;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -84,8 +84,8 @@
 
 .anime-title {
   @apply tracking-tighter uppercase italic leading-[0.85];
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.4);
-  filter: drop-shadow(4px 4px 0px theme('colors.accent.900')) drop-shadow(8px 8px 0px rgba(0,0,0,0.5));
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(4px 4px 0px theme('colors.primary.900')) drop-shadow(8px 8px 0px rgba(0,0,0,0.8));
 }
 
 .text-glow {
@@ -98,7 +98,7 @@
 }
 
 .cinematic-shadow {
-  box-shadow: 0 0 40px -12px rgba(239, 68, 68, 0.15);
+  box-shadow: 0 0 60px -12px rgba(255, 49, 49, 0.3);
 }
 
 .magnetic-wrap {
