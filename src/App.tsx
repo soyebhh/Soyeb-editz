@@ -7,8 +7,8 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { SITE_CONFIG } from './data/siteConfig';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 
-import { Header }         from './components/Header';
-import { Hero }           from './components/Hero';
+import { Header }             from './components/Header';
+import { CanvasScrollHero }   from './components/CanvasScrollHero';
 import { PortfolioGrid }  from './components/PortfolioGrid';
 import { ReelEmbed }      from './components/ReelEmbed';
 import { Brands }         from './components/Brands';
@@ -63,7 +63,7 @@ function App() {
         <div className="relative z-10">
           <Header />
           <main>
-            <Hero />
+            <CanvasScrollHero />
             <ReelEmbed />
             <PortfolioGrid />
             <Brands />
