@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,20 +7,13 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { SITE_CONFIG } from './data/siteConfig';
 import { usePrefersReducedMotion } from './hooks/usePrefersReducedMotion';
 
-import { Header }       from './components/Header';
-import { Hero }         from './components/Hero';
-import { PortfolioGrid } from './components/PortfolioGrid';
-import { ReelEmbed }    from './components/ReelEmbed';
-import { Brands }       from './components/Brands';
-import { Contact }      from './components/Contact';
+import { Header }         from './components/Header';
+import { Hero }           from './components/Hero';
+import { PortfolioGrid }  from './components/PortfolioGrid';
+import { ReelEmbed }      from './components/ReelEmbed';
+import { Brands }         from './components/Brands';
+import { Contact }        from './components/Contact';
 
-/**
- * Lazy-load the entire Three.js bundle (ScrollScene.tsx + all drei/three deps).
- * This means the JS for the 3D tunnel is split into a separate chunk that
- * only starts downloading AFTER the HTML + critical CSS paint — protecting LCP.
- * Search engines see all text content immediately in the DOM, before any 3D loads.
- */
-const ScrollScene = lazy(() => import('./components/ScrollScene'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,16 +59,7 @@ function App() {
           <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         </Helmet>
 
-        {/* ── 3D scroll scene – lazy, non-blocking, aria-hidden ─────────────
-            Fallback is null: the scene loads in the background, the page is
-            already fully usable with just the body bg-slate-950 visible. */}
-        {!reducedMotion && (
-          <Suspense fallback={null}>
-            <ScrollScene />
-          </Suspense>
-        )}
-
-        {/* ── All HTML content sits above the 3D canvas (z-10) ──────────── */}
+        {/* ── All HTML content sits above the background ──────────── */}
         <div className="relative z-10">
           <Header />
           <main>

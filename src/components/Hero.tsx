@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { SITE_CONFIG } from '../data/siteConfig';
 
-// Note: the full-page 3D scroll scene is now mounted once in App.tsx
-// (ScrollScene – fixed, z-0). No per-section canvas is needed here.
 
 
 
@@ -87,7 +85,7 @@ export const Hero: React.FC = () => {
 
       {/* ── Legacy CSS background decor (kept for progressive enhancement) ── */}
       <div className="ig-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[700px] md:h-[700px] border-[1px] border-white/5 rounded-[80px] md:rounded-[100px] -z-10 opacity-30" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 blur-[150px] -z-10 animate-pulse-slow" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 blur-[80px] -z-10 animate-pulse-slow" />
 
       {/* ── Foreground content ────────────────────────────────────────────── */}
       <div className="hero-content text-center max-w-5xl relative z-10">

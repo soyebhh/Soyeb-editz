@@ -1,45 +1,36 @@
 import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
 import { SITE_CONFIG } from '../data/siteConfig';
+
 
 export const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      gsap.to(headerRef.current, {
-        backgroundColor: isScrolled ? 'rgba(2, 6, 23, 0.6)' : 'rgba(2, 6, 23, 0)',
-        backdropFilter: isScrolled ? 'blur(24px)' : 'blur(0px)',
-        paddingTop: isScrolled ? '1rem' : '1.5rem',
-        paddingBottom: isScrolled ? '1rem' : '1.5rem',
-        borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid transparent',
-        duration: 0.5,
-        ease: 'power3.out'
-      });
-    };
+    let wasScrolled = false;
+    let ticking = false;
 
-    // Magnetic Nav Links
-    const links = document.querySelectorAll<HTMLElement>('.nav-link');
-    links.forEach((link) => {
-      link.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const { left, top, width, height } = link.getBoundingClientRect();
-        const x = (clientX - (left + width / 2)) * 0.5;
-        const y = (clientY - (top + height / 2)) * 0.5;
-        gsap.to(link, { x, y, duration: 0.3 });
-      });
-      link.addEventListener('mouseleave', () => {
-        gsap.to(link, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
-      });
-    });
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          const isScrolled = window.scrollY > 50;
+          if (isScrolled !== wasScrolled) {
+            wasScrolled = isScrolled;
+            if (headerRef.current) {
+              headerRef.current.classList.toggle('header-scrolled', isScrolled);
+            }
+          }
+          ticking = false;
+        });
+      }
+    };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header ref={headerRef} className="fixed top-0 w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center transition-all bg-transparent">
+    <header ref={headerRef} className="fixed top-0 w-full z-50 py-6 px-6 md:px-12 flex justify-between items-center bg-transparent header-base">
       <div className="text-2xl font-black tracking-tighter text-white uppercase group cursor-pointer">
         {SITE_CONFIG.BRAND} <span className="text-primary italic opacity-80 transition-opacity group-hover:opacity-100">Visuals</span>
       </div>

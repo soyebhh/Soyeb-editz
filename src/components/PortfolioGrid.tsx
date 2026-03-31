@@ -44,27 +44,30 @@ export const PortfolioGrid: React.FC = () => {
     return () => ctx.revert();
   }, []);
 
+  const tiltRAF = useRef<number | null>(null);
+
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / 20;
-    const y = (e.clientY - rect.top - rect.height / 2) / 20;
-    gsap.to(card.querySelector('.tilt-inner'), { 
-      rotationY: x, 
-      rotationX: -y, 
-      transformPerspective: 1200, 
-      duration: 0.5,
-      ease: 'power2.out'
+    if (tiltRAF.current) return;
+    tiltRAF.current = requestAnimationFrame(() => {
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / 25;
+      const y = (e.clientY - rect.top - rect.height / 2) / 25;
+      const inner = card.querySelector('.tilt-inner') as HTMLElement;
+      if (inner) {
+        inner.style.transform = `perspective(1200px) rotateY(${x}deg) rotateX(${-y}deg)`;
+      }
+      tiltRAF.current = null;
     });
   };
 
   const onMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    gsap.to(e.currentTarget.querySelector('.tilt-inner'), { 
-      rotationY: 0, 
-      rotationX: 0, 
-      duration: 0.8,
-      ease: 'elastic.out(1, 0.3)'
-    });
+    const inner = e.currentTarget.querySelector('.tilt-inner') as HTMLElement;
+    if (inner) {
+      inner.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+      inner.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg)';
+      setTimeout(() => { inner.style.transition = ''; }, 600);
+    }
   };
 
   return (
@@ -95,7 +98,7 @@ export const PortfolioGrid: React.FC = () => {
                   <img 
                     src={item.url} 
                     alt={item.title} 
-                    className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" 
+                    className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
                     loading="lazy" 
                   />
                   

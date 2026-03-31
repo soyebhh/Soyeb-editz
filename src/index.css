@@ -28,14 +28,14 @@
   body::before {
     content: "";
     @apply fixed inset-0 z-[-1] bg-mesh-gradient;
+    will-change: auto;
   }
 
-  /* Cinematic Grain Effect */
+  /* Cinematic Grain — lightweight: no blur, no contrast filter */
   body::after {
     content: "";
-    @apply fixed inset-0 z-[9999] pointer-events-none opacity-[0.03];
+    @apply fixed inset-0 z-[9999] pointer-events-none opacity-[0.025];
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    filter: contrast(150%) brightness(100%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -57,7 +57,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-800 rounded-full hover:bg-primary/50 transition-colors;
+  @apply bg-slate-800 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
 }
 
 /* Utilities */
@@ -71,7 +75,7 @@
 }
 
 .glass-morphism {
-  @apply bg-white/5 backdrop-blur-2xl border border-white/10 shadow-2xl;
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
 }
 
 .text-gradient {
@@ -79,10 +83,32 @@
 }
 
 .cinematic-shadow {
-  box-shadow: 0 0 50px -12px rgba(14, 165, 233, 0.2);
+  box-shadow: 0 0 40px -12px rgba(14, 165, 233, 0.15);
 }
 
 .magnetic-wrap {
   display: inline-block;
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Header transitions via CSS classes (no per-frame GSAP tweens) ── */
+.header-base {
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+  will-change: backdrop-filter;
+}
+
+.header-scrolled {
+  background-color: rgba(2, 6, 23, 0.6) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+  border-bottom-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ── GPU hints for animated elements ── */
+.reel-card {
+  will-change: opacity;
+  contain: layout style paint;
 }

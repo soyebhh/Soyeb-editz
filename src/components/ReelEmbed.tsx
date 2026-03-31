@@ -6,27 +6,38 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
+const VideoPlayer: React.FC<{ url: string; isVisible: boolean }> = ({ url, isVisible }) => {
   const [isMuted, setIsMuted] = useState(true);
   const [showHint, setShowHint] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Only play video when it's visible in viewport
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isVisible) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isVisible]);
 
   return (
     <div className="relative w-full h-full group cursor-pointer overflow-hidden rounded-[24px]" onClick={() => { setIsMuted(!isMuted); setShowHint(false); }}>
       <video
         ref={videoRef}
         src={url}
-        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-        autoPlay
+        className="w-full h-full object-cover"
         muted={isMuted}
         loop
         playsInline
+        preload="metadata"
       />
 
       {/* Premium Interaction Hint */}
       {showHint && isMuted && (
-        <div className="absolute inset-0 flex items-center justify-center bg-slate-950/20 backdrop-blur-[4px] pointer-events-none transition-opacity duration-700">
-          <div className="bg-white/10 border border-white/20 px-6 py-3 rounded-full backdrop-blur-2xl flex items-center gap-3 animate-float">
+        <div className="absolute inset-0 flex items-center justify-center bg-slate-950/20 pointer-events-none transition-opacity duration-700">
+          <div className="bg-white/10 border border-white/20 px-6 py-3 rounded-full backdrop-blur-md flex items-center gap-3 animate-float">
             <Play size={20} className="text-white fill-white" />
             <span className="text-white text-xs font-black uppercase tracking-[0.2em]">Tap to Unmute</span>
           </div>
@@ -34,7 +45,7 @@ const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
       )}
 
       {/* Custom Controls Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-[24px]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px]" />
 
       <button
         onClick={(e) => {
@@ -43,7 +54,7 @@ const VideoPlayer: React.FC<{ url: string }> = ({ url }) => {
           setIsMuted(!isMuted);
           setShowHint(false);
         }}
-        className="absolute bottom-6 right-6 p-4 rounded-full glass-morphism text-white transition-all hover:scale-110 active:scale-95 z-20"
+        className="absolute bottom-6 right-6 p-4 rounded-full bg-white/10 border border-white/10 text-white transition-all hover:scale-110 active:scale-95 z-20"
         aria-label={isMuted ? "Unmute" : "Mute"}
       >
         {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
@@ -57,6 +68,7 @@ export const ReelEmbed: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
 
   const scrollToIndex = (index: number) => {
     if (scrollRef.current) {
@@ -68,6 +80,33 @@ export const ReelEmbed: React.FC = () => {
       setActiveIndex(index);
     }
   };
+
+  // Track which cards are visible with IntersectionObserver
+  useEffect(() => {
+    const cards = document.querySelectorAll('.reel-card');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setVisibleCards((prev) => {
+          const next = new Set(prev);
+          entries.forEach((entry) => {
+            const idx = Number(entry.target.getAttribute('data-index'));
+            if (entry.isIntersecting) {
+              next.add(idx);
+              entry.target.classList.add('reel-active');
+            } else {
+              next.delete(idx);
+              entry.target.classList.remove('reel-active');
+            }
+          });
+          return next;
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -84,35 +123,22 @@ export const ReelEmbed: React.FC = () => {
           ease: "power4.out"
         });
       }
-
-      // Reel Cards staggered entry
-      const reels = gsap.utils.toArray<HTMLElement>('.reel-card');
-      reels.forEach((reel) => {
-        gsap.to(reel, {
-          scrollTrigger: {
-            trigger: reel,
-            start: "top 85%",
-            end: "top 15%",
-            toggleActions: "play reverse play reverse",
-            onEnter: () => reel.classList.add('reel-active'),
-            onLeave: () => reel.classList.remove('reel-active'),
-            onEnterBack: () => reel.classList.add('reel-active'),
-            onLeaveBack: () => reel.classList.remove('reel-active'),
-          },
-          scale: 1,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out"
-        });
-      });
     }, sectionRef);
 
+    // Throttled scroll handler for active index on mobile
+    let ticking = false;
     const handleScroll = () => {
-      if (scrollRef.current) {
-        const scrollLeft = scrollRef.current.scrollLeft;
-        const width = scrollRef.current.offsetWidth;
-        const index = Math.round(scrollLeft / width);
-        setActiveIndex(index);
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          if (scrollRef.current) {
+            const scrollLeft = scrollRef.current.scrollLeft;
+            const width = scrollRef.current.offsetWidth;
+            const index = Math.round(scrollLeft / width);
+            setActiveIndex(index);
+          }
+          ticking = false;
+        });
       }
     };
 
@@ -148,14 +174,14 @@ export const ReelEmbed: React.FC = () => {
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => scrollToIndex(Math.max(0, activeIndex - 1))}
-                  className="p-4 rounded-full glass-morphism text-white hover:bg-primary hover:text-white transition-all disabled:opacity-20 group"
+                  className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:text-white transition-colors disabled:opacity-20 group"
                   disabled={activeIndex === 0}
                 >
                   <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
                 </button>
                 <button
                   onClick={() => scrollToIndex(Math.min(SITE_CONFIG.REEL_URLS.length - 1, activeIndex + 1))}
-                  className="p-4 rounded-full glass-morphism text-white hover:bg-primary hover:text-white transition-all disabled:opacity-20 group"
+                  className="p-4 rounded-full bg-white/5 border border-white/10 text-white hover:bg-primary hover:text-white transition-colors disabled:opacity-20 group"
                   disabled={activeIndex === SITE_CONFIG.REEL_URLS.length - 1}
                 >
                   <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
@@ -177,14 +203,17 @@ export const ReelEmbed: React.FC = () => {
             return (
               <div
                 key={i}
-                className={`reel-card flex-shrink-0 w-[85vw] sm:w-[50vw] md:w-auto snap-center relative group transition-all duration-1000 opacity-20 ${staggerClass}`}
+                data-index={i}
+                className={`reel-card flex-shrink-0 w-[85vw] sm:w-[50vw] md:w-auto snap-center relative group transition-opacity duration-700 opacity-20 ${staggerClass}`}
               >
-                {/* Dynamic Accent Glow */}
-                <div className="absolute -inset-1 rounded-[40px] bg-gradient-to-tr from-primary/50 to-accent/50 opacity-0 group-[.reel-active]:opacity-20 group-hover:opacity-40 blur-xl transition-all duration-1000" />
+                {/* Dynamic Accent Glow — only render for visible cards */}
+                {visibleCards.has(i) && (
+                  <div className="absolute -inset-1 rounded-[40px] bg-gradient-to-tr from-primary/30 to-accent/30 opacity-20 blur-lg transition-opacity duration-700" />
+                )}
 
-                <div className="relative rounded-[36px] overflow-hidden p-0 cinematic-shadow border border-white/5 aspect-[9/16] z-10 transition-all duration-700 group-[.reel-active]:scale-[1.02] group-hover:border-white/20">
+                <div className="relative rounded-[36px] overflow-hidden p-0 cinematic-shadow border border-white/5 aspect-[9/16] z-10 transition-colors duration-500 group-hover:border-white/20">
                   {isVideo ? (
-                    <VideoPlayer url={url} />
+                    <VideoPlayer url={url} isVisible={visibleCards.has(i)} />
                   ) : (
                     <iframe
                       src={`${url}${url.endsWith('/') ? '' : '/'}embed/`}
@@ -198,7 +227,7 @@ export const ReelEmbed: React.FC = () => {
                 </div>
 
                 {/* Refined Label */}
-                <div className="mt-8 px-6 flex justify-between items-center opacity-0 group-[.reel-active]:opacity-100 transition-all duration-1000 delay-300">
+                <div className="mt-8 px-6 flex justify-between items-center opacity-0 group-[.reel-active]:opacity-100 transition-opacity duration-700 delay-300">
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary/80 mb-2">Category {i + 1}</p>
                     <p className="text-sm font-bold text-white uppercase tracking-wider">Cinematic Reel</p>
@@ -235,4 +264,3 @@ export const ReelEmbed: React.FC = () => {
     </section>
   );
 };
-

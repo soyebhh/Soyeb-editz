@@ -49,8 +49,8 @@ export const Contact: React.FC = () => {
     <section id="contact" ref={containerRef} className="py-32 md:py-52 px-6 overflow-hidden">
       <div className="max-w-5xl mx-auto glass-morphism rounded-[60px] md:rounded-[80px] p-12 md:p-32 text-center relative overflow-hidden">
         {/* Background glow */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full -z-10 animate-pulse-slow" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/10 blur-[120px] rounded-full -z-10" />
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 blur-[60px] rounded-full -z-10 animate-pulse-slow" />
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/10 blur-[60px] rounded-full -z-10" />
 
         <div className="contact-reveal space-y-6 mb-16">
           <span className="text-primary font-black tracking-[0.4em] uppercase text-xs opacity-60">Ready to start?</span>
