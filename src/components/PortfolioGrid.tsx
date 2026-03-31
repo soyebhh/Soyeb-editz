@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SITE_CONFIG } from '../data/siteConfig';
-import { X, Maximize2, Volume2, VolumeX } from 'lucide-react';
+import { X, Maximize2, Volume2, VolumeX, Play } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,18 +23,30 @@ const MediaCard: React.FC<{
     }
   }, [item.type]);
 
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  // Toggle Play/Pause
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      if (isPlaying) videoRef.current.pause();
+      else videoRef.current.play();
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   const isVideo = item.type === 'video';
-  const colSpan = index === 0 ? "md:col-span-8" : "md:col-span-4";
-  const aspectRatio = index === 0 ? "aspect-video" : "h-[450px] md:h-full";
+  const colSpan = "md:col-span-12"; // Always Full Width for maximum impact
+  const aspectRatio = index === 0 ? "aspect-video" : "aspect-[21/9] md:aspect-[3/1]";
 
   return (
     <div
-      className={`portfolio-card group cursor-pointer relative ${colSpan} ${index === 0 ? 'row-span-2' : ''}`}
+      className={`portfolio-card group cursor-pointer relative ${colSpan} mb-12`}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       onClick={onOpen}
     >
-      <div className={`tilt-inner relative w-full ${aspectRatio} rounded-[40px] overflow-hidden bg-black cinematic-shadow border border-white/5 transition-all group-hover:border-primary/30`}>
+      <div className={`tilt-inner relative w-full ${aspectRatio} rounded-[40px] md:rounded-[60px] overflow-hidden bg-black cinematic-shadow border border-white/5 transition-all group-hover:border-primary/20`}>
         {isVideo ? (
           <div className="relative w-full h-full">
             <video
@@ -42,20 +54,35 @@ const MediaCard: React.FC<{
               src={item.url}
               className="w-full h-full object-cover"
               muted={isMuted}
+              autoPlay
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
             />
-            {/* Audio Toggle */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsMuted(!isMuted);
-              }}
-              className="absolute top-6 right-6 p-3 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white z-20 hover:bg-white hover:text-black transition-all"
-            >
-              {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-            </button>
+            {/* Controls Overlay */}
+            <div className="absolute top-8 right-8 flex gap-3">
+               {/* Play/Pause Button */}
+               <button
+                 onClick={togglePlay}
+                 className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 text-white hover:bg-white hover:text-black transition-all shadow-2xl"
+               >
+                 {isPlaying ? <span className="w-3 h-4 border-l-2 border-r-2 border-white group-hover:border-black" /> : <Play size={18} className="fill-white" />}
+               </button>
+
+               {/* Audio Toggle */}
+               <button
+                 onClick={(e) => {
+                   e.stopPropagation();
+                   setIsMuted(!isMuted);
+                 }}
+                 className="flex items-center gap-3 px-6 py-3 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 text-white z-20 hover:bg-primary hover:text-black hover:scale-105 transition-all shadow-2xl group/sb"
+               >
+                 <span className="text-[9px] font-black uppercase tracking-widest hidden md:inline-block">
+                   {isMuted ? 'Muted' : 'Sound On'}
+                 </span>
+                 {isMuted ? <VolumeX size={14} className="group-hover/sb:animate-pulse" /> : <Volume2 size={14} />}
+               </button>
+            </div>
           </div>
         ) : (
           <img 
