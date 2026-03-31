@@ -14,6 +14,8 @@ import { Brands }         from './components/Brands';
 import { Contact }        from './components/Contact';
 
 
+import { PortfolioGrid }   from './components/PortfolioGrid';
+
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
@@ -70,7 +72,7 @@ function App() {
           <main>
             <CanvasScrollHero />
             <ReelEmbed />
-            {/* <PortfolioGrid /> */}
+            <PortfolioGrid />
             <Brands />
             <Contact />
           </main>

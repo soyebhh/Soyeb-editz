@@ -242,7 +242,7 @@ export const CanvasScrollHero: React.FC = () => {
                   fetchPriority="high"
                   loading="eager"
                   decoding="async"
-                  className="w-28 h-28 md:w-36 md:h-36 rounded-full object-cover transition-all duration-700 grayscale hover:grayscale-0"
+                  className="w-28 h-28 md:w-36 md:h-36 rounded-full object-cover transition-all duration-700 shadow-xl"
                   alt={SITE_CONFIG.NAME}
                 />
               </div>

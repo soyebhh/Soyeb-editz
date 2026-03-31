@@ -94,22 +94,22 @@ export const PortfolioGrid: React.FC = () => {
                 onMouseLeave={onMouseLeave}
                 onClick={() => setModal({ url: item.url, caption: item.caption, title: item.title })}
               >
-                <div className={`tilt-inner relative w-full ${height} rounded-[40px] overflow-hidden bg-slate-900 cinematic-shadow border border-white/5 transition-all group-hover:border-primary/30`}>
+                <div className={`tilt-inner relative w-full ${height} rounded-[40px] overflow-hidden bg-black cinematic-shadow border border-white/5 transition-all group-hover:border-primary/30`}>
                   <img 
                     src={item.url} 
                     alt={item.title} 
-                    className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
                     loading="lazy" 
                   />
                   
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                   
                   {/* Content */}
                   <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <div>
                       <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2">{item.title}</h3>
-                      <p className="text-slate-400 text-xs font-bold uppercase tracking-widest leading-relaxed max-w-[200px]">{item.caption}</p>
+                      <p className="text-white/50 text-xs font-bold uppercase tracking-widest leading-relaxed max-w-[200px]">{item.caption}</p>
                     </div>
                     <div className="mag-btn p-4 rounded-full glass-morphism text-white">
                       <Maximize2 size={24} />
@@ -128,7 +128,7 @@ export const PortfolioGrid: React.FC = () => {
 
       {/* Premium Preview Modal */}
       {modal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 backdrop-blur-3xl bg-slate-950/90" onClick={() => setModal(null)}>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 backdrop-blur-3xl bg-black/90" onClick={() => setModal(null)}>
           <button className="absolute top-8 right-8 p-4 rounded-full glass-morphism text-white/50 hover:text-white transition-all hover:scale-110 z-[110]">
             <X size={32} />
           </button>
@@ -136,7 +136,7 @@ export const PortfolioGrid: React.FC = () => {
           <div className="max-w-6xl w-full relative z-[105]" onClick={e => e.stopPropagation()}>
             <div className="relative group">
               <div className="absolute -inset-4 bg-primary/20 blur-3xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-              <img src={modal.url} className="relative w-full rounded-[40px] shadow-2xl border border-white/10 max-h-[80vh] object-contain bg-slate-900" alt="Preview" />
+              <img src={modal.url} className="relative w-full rounded-[40px] shadow-2xl border border-white/10 max-h-[80vh] object-contain bg-black" alt="Preview" />
             </div>
             
             <div className="mt-8 text-center">
