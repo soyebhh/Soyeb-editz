@@ -29,10 +29,10 @@ export const SITE_CONFIG = {
     { id: 2, title: "Static Impact", url: "/grid1.jpeg", caption: "Professional Photography", type: "image" },
   ],
   STATS: [
-    { label: "Reels Edited", value: "500+" },
-    { label: "Views Generated", value: "50M+" },
-    { label: "Happy Clients", value: "120+" },
-    { label: "Years Experience", value: "5+" }
+    { label: "Reels Edited", value: "100+" },
+    { label: "Views Generated", value: "10M+" },
+    { label: "Happy Clients", value: "18+" },
+    { label: "Years Experience", value: "4+" }
   ],
   SERVICES: [
     { title: "Reel Editing", desc: "High-retention, algorithm-friendly short form content that scales your brand.", icon: "Video" },

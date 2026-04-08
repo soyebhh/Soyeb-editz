@@ -183,11 +183,11 @@ body, header, footer, section, nav, a, button, span, p, h1, h2, h3, h4, h5, h6, 
 
 /* ── Glassmorphism ── */
 .glass-morphism {
-  background: color-mix(in srgb, var(--c-surface) 40%, transparent);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--c-border);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--c-surface) 60%, transparent) 0%, color-mix(in srgb, var(--c-surface) 20%, transparent) 100%);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid color-mix(in srgb, var(--c-border) 80%, transparent);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* ── Text gradient (uses theme primary+accent) ── */
@@ -318,30 +318,34 @@ body, header, footer, section, nav, a, button, span, p, h1, h2, h3, h4, h5, h6, 
 #cursor-dot {
   position: fixed;
   top: 0; left: 0;
-  width: 8px; height: 8px;
+  width: 12px; height: 12px;
   background: var(--c-primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  transition: background 1.5s ease, transform 0.1s ease;
+  transition: width 0.2s ease, height 0.2s ease, background 1.5s ease;
   mix-blend-mode: difference;
 }
 #cursor-ring {
   position: fixed;
   top: 0; left: 0;
-  width: 36px; height: 36px;
-  border: 1.5px solid var(--c-primary);
+  width: 40px; height: 40px;
+  border: 2px solid var(--c-primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
   transform: translate(-50%, -50%);
-  opacity: 0.5;
-  transition: width 0.4s ease, height 0.4s ease, border-color 1.5s ease, opacity 0.3s ease;
+  opacity: 0.6;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1), height 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 1.5s ease, opacity 0.3s ease, background-color 0.4s ease;
 }
 #cursor-ring.hovered {
-  width: 60px; height: 60px;
+  width: 80px; height: 80px;
   opacity: 0.3;
+  background-color: color-mix(in srgb, var(--c-primary) 30%, transparent);
+  border-width: 1px;
 }
 
 @media (hover: none) {
