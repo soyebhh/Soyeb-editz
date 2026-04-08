@@ -59,7 +59,7 @@ export const SITE_CONFIG = {
     { question: "Where are you based?", answer: "I am based in Mumbai, India. I offer physical cinematography shoots across Mumbai and Maharashtra, but provide remote video editing worldwide." },
     { question: "What is your turnaround time?", answer: "For remote editing, typically 48-72 hours per reel depending on complexity. For full production shoots, editing usually takes 5-7 days post-shoot." },
     { question: "Do you provide raw footage?", answer: "Yes, if we do a physical shoot, you can request the raw footage for an additional hard-drive transfer fee." },
-    { question: "What software do you use?", answer: "I use Premiere Pro & After Effects for cutting and VFX, and DaVinci Resolve Studio for professional color grading." },
+    // { question: "What software do you use?", answer: "I use Premiere Pro & After Effects for cutting and VFX, and DaVinci Resolve Studio for professional color grading." },
     { question: "How do we get started?", answer: "Simply click the WhatsApp button on this site to shoot me a message. We'll discuss your goals and choose the right package!" }
   ]
 };
