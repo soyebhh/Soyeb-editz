@@ -53,8 +53,7 @@ export const SITE_CONFIG = {
   ],
   PRICING: [
     { tier: "Starter", price: "₹15,000", period: "/mo", desc: "Perfect for creators starting out.", features: ["4 High-Quality Reels", "Basic Color Grading", "Trending Audio Sync", "1 Revision per video"] },
-    { tier: "Pro", price: "₹35,000", period: "/mo", desc: "For serious brands needing rapid growth.", features: ["10 Premium Reels", "Advanced VFX & Captions", "Cinematic DaVinci Grade", "Content Strategy Call", "Unlimited Revisions"], isPopular: true },
-    { tier: "Elite", price: "Custom", period: "", desc: "Full-scale production & post-production.", features: ["On-Location Shoots (Mumbai)", "Everything in Pro", "YouTube Shorts & TikToks", "Dedicated Editor", "24/7 Priority WhatsApp Support"] }
+    { tier: "Elite", price: "Custom", period: "", desc: "Full-scale production & post-production.", features: ["On-Location Shoots (Mumbai)", "Everything in Starter", "YouTube Shorts & TikToks", "Dedicated Editor", "24/7 Priority WhatsApp Support"], isPopular: true }
   ],
   FAQS: [
     { question: "Where are you based?", answer: "I am based in Mumbai, India. I offer physical cinematography shoots across Mumbai and Maharashtra, but provide remote video editing worldwide." },

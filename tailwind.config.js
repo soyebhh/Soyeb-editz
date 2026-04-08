@@ -9,30 +9,30 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: "#0284c7", // Sky/Sapphire Blue
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
+          DEFAULT: "#FFD700", // Electric Gold
+          50: '#fffbea',
+          100: '#fff3c4',
+          200: '#ffe885',
+          300: '#ffda46',
+          400: '#ffcc15',
+          500: '#ffd700', // Actual gold
+          600: '#e6b800',
+          700: '#b38f00',
+          800: '#85690b',
+          900: '#715812',
         },
         accent: {
-          DEFAULT: "#06b6d4", // Cyan
-          50: '#ecfeff',
-          100: '#cffafe',
-          200: '#a5f3fc',
-          300: '#67e8f9',
-          400: '#22d3ee',
-          500: '#06b6d4',
-          600: '#0891b2',
-          700: '#0e7490',
-          800: '#155e75',
-          900: '#164e63',
+          DEFAULT: "#E63946", // Accent Red
+          50: '#fdf2f3',
+          100: '#fbe4e6',
+          200: '#f5c3c8',
+          300: '#efa2a9',
+          400: '#e63946', // Actual Red
+          500: '#d72331',
+          600: '#b61925',
+          700: '#99121d',
+          800: '#82131b',
+          900: '#71151b',
         },
         slate: {
           950: '#000000',
@@ -42,9 +42,9 @@ export default {
         offwhite: '#F5F5F0',
       },
       backgroundImage: {
-        'ig-gradient': 'linear-gradient(45deg, #0284c7 0%, #0ea5e9 25%, #06b6d4 50%, #22d3ee 75%, #323232 100%)',
+        'ig-gradient': 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2397 75%, #323232 100%)',
         'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
-        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(2, 132, 199, 0.1) 0px, transparent 50%), radial-gradient(at 0% 100%, #0A0A0A 0px, transparent 50%)',
+        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(255, 215, 0, 0.1) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(230, 57, 70, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 215, 0, 0.05) 0px, transparent 50%), radial-gradient(at 0% 100%, #0A0A0A 0px, transparent 50%)',
       },
       animation: {
         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',

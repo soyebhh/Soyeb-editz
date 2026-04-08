@@ -75,13 +75,13 @@ function App() {
         </Helmet>
 
         {/* ── All HTML content sits above the background ──────────── */}
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col md:gap-y-0 gap-y-12">
           <Header />
-          <main>
+          <main className="flex flex-col md:gap-y-0 gap-y-8">
             <Hero />
             <TrustedCreators />
             {/* <Brands /> */}
-            <Services />
+            {/* <Services /> */}
             <Process />
             <ReelEmbed />
             <PortfolioGrid />
