@@ -130,15 +130,8 @@ export const ReelEmbed: React.FC = () => {
         </h2>
       </div>
 
-      {/* ── Progress Indicators (Vertical on mobile) ── */}
-      <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 md:hidden">
-        {SITE_CONFIG.REEL_URLS.map((_, i) => (
-          <div 
-            key={i} 
-            className={`w-1 transition-all duration-500 rounded-full ${i === visibleIndex ? 'h-8 bg-primary shadow-[0_0_10px_theme(colors.primary.DEFAULT)]' : 'h-2 bg-white/20'}`}
-          />
-        ))}
-      </div>
+      {/* ── Progress Indicators (Removed globally fixed dots to prevent visual bugs on mobile) ── */}
+
 
       {/* ── Main Reel Container ──────────────────────────────────── */}
       <div 

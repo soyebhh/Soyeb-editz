@@ -38,17 +38,17 @@ export const Hero: React.FC = () => {
         ease: 'power3.out',
       });
 
-      /* ── 2. Parallax — text overlay fades + drifts up ── */
+      /* ── 2. Parallax — text overlay moves slower than scroll ── */
       if (overlayRef.current) {
         gsap.to(overlayRef.current, {
-          opacity: 0,
-          y: -120,
+          yPercent: 20, // Parallax depth
+          opacity: 0.1, // Fade out softly at very end
           ease: 'none',
           scrollTrigger: {
             trigger: wrapperRef.current,
             start: 'top top',
-            end: '60% top',
-            scrub: 0.3,
+            end: 'bottom top',
+            scrub: true,
           },
         });
       }
@@ -56,25 +56,25 @@ export const Hero: React.FC = () => {
       /* ── 3. Parallax — background glow orbs move at different speeds ── */
       if (bgLayer1Ref.current) {
         gsap.to(bgLayer1Ref.current, {
-          y: -80,
+          yPercent: 50,
           ease: 'none',
           scrollTrigger: {
             trigger: wrapperRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 0.6,
+            scrub: true,
           },
         });
       }
       if (bgLayer2Ref.current) {
         gsap.to(bgLayer2Ref.current, {
-          y: -140,
+          yPercent: 80,
           ease: 'none',
           scrollTrigger: {
             trigger: wrapperRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 1,
+            scrub: true,
           },
         });
       }
@@ -82,13 +82,13 @@ export const Hero: React.FC = () => {
       /* ── 4. Stats parallax (slower layer) ── */
       if (statsRef.current) {
         gsap.to(statsRef.current, {
-          y: -40,
+          yPercent: -15,
           ease: 'none',
           scrollTrigger: {
             trigger: wrapperRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 0.5,
+            scrub: true,
           },
         });
       }
