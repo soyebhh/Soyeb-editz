@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { BadgeCheck, Flame, Star, MessageCircle } from 'lucide-react';
+import { BadgeCheck, Flame, Star, MessageCircle, Instagram } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -32,21 +32,7 @@ export const TrustedCreators: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Smooth fade-in animation on scroll
-    const ctx = gsap.context(() => {
-      gsap.from('.creator-card', {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        }
-      });
-    }, containerRef);
-    return () => ctx.revert();
+    // Visibility bug fixed by removing GSAP opacity:0 overlay which got stuck on mobile viewports
   }, []);
 
   return (
@@ -122,6 +108,7 @@ export const TrustedCreators: React.FC = () => {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center w-full gap-2 text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-tr from-[#1A1A1A] to-[#222222] border border-white/10 px-6 py-4 rounded-xl hover:border-white/30 transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] active:scale-[0.98]"
               >
+                <Instagram size={16} className="text-white" />
                 View Profile on Instagram
               </a>
             </div>
