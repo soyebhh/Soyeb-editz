@@ -79,17 +79,17 @@
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#FFD700] via-[#E63946] to-[#FFD700] animate-pulse-slow font-black;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0284c7] via-[#06b6d4] to-[#0ea5e9] animate-pulse-slow font-black;
 }
 
 .anime-title {
   @apply tracking-tighter uppercase italic leading-[0.85];
-  -webkit-text-stroke: 1px rgba(255, 215, 0, 0.1);
+  -webkit-text-stroke: 1px rgba(2, 132, 199, 0.2);
   filter: drop-shadow(4px 4px 0px theme('colors.accent.900')) drop-shadow(8px 8px 0px rgba(0,0,0,0.9));
 }
 
 .text-glow {
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(230, 57, 70, 0.4);
+  text-shadow: 0 0 20px rgba(2, 132, 199, 0.6), 0 0 40px rgba(6, 182, 212, 0.4);
 }
 
 .section-reveal {
@@ -98,7 +98,7 @@
 }
 
 .cinematic-shadow {
-  box-shadow: 0 0 60px -12px rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 60px -12px rgba(2, 132, 199, 0.3);
 }
 
 .magnetic-wrap {

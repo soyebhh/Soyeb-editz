@@ -10,7 +10,7 @@ const CREATORS = [
     name: "Manjari Mishrra",
     handle: "@manjari.mishrra",
     url: "https://www.instagram.com/manjari.mishrra",
-    image: "/p1.PNG", // Using existing profile pic placeholder, but could be customized
+    image: "/d1.jpeg", // Majri DP
     followers: "555K",
     category: "Actor • Influencer • Fashion & Beauty",
     work: '"Haaye Rama" by Mika Singh',
@@ -20,7 +20,7 @@ const CREATORS = [
     name: "Amit Das",
     handle: "@actoramitdas",
     url: "https://www.instagram.com/actoramitdas",
-    image: "/p1.PNG", 
+    image: "/d2.jpeg", // Amit DP
     followers: "279K",
     category: "Actor • Influencer • Entrepreneur",
     work: '"FULEKU" Movie — Amazon Prime Video',
