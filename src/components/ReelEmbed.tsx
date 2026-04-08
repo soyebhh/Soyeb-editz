@@ -43,10 +43,10 @@ const VideoPlayer: React.FC<{ url: string; isVisible: boolean }> = ({ url, isVis
             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-primary text-glow">Original Content</p>
          </div>
          <h3 className="text-5xl md:text-7xl text-white anime-title mb-4">
-            FIRE <span className="text-gradient">EDITS</span>
+            PREMIUM <span className="text-gradient">CINEMATICS</span>
          </h3>
          <p className="text-[10px] md:text-xs text-white/50 font-bold uppercase tracking-[0.2em] leading-relaxed max-w-[280px]">
-            Engineered for maximum retention and viral potential.
+            Engineered to elevate brand storytelling.
          </p>
       </div>
 
@@ -86,36 +86,12 @@ export const ReelEmbed: React.FC = () => {
   useEffect(() => {
     const section = containerRef.current;
     if (!section) return;
-
-    // We use GSAP to pin the section and translate the reels
-    // This creates the "3D scroll" feel and locks the user in until they finish
-    const reels = section.querySelectorAll('.reel-slide');
     
-    // On Mobile, we'll use native snap because it feels more like Instagram
-    // On Desktop, we'll use pinned scrolling
+    // Mobile Snap Observer
+    const reels = section.querySelectorAll('.reel-slide');
     const isMobile = window.innerWidth < 768;
 
-    if (!isMobile) {
-      gsap.to(reels, {
-        xPercent: (i) => -100 * i,
-        scale: (i) => i === visibleIndex ? 1 : 0.8,
-        opacity: (i) => i === visibleIndex ? 1 : 0.3,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          pin: true,
-          scrub: 1,
-          snap: 1 / (reels.length - 1),
-          start: "top top",
-          end: () => `+=${window.innerHeight * reels.length}`,
-          onUpdate: (self) => {
-            const index = Math.round(self.progress * (reels.length - 1));
-            setVisibleIndex(index);
-          }
-        }
-      });
-    } else {
-      // Mobile Snap Observer
+    if (isMobile) {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach(entry => {
@@ -125,7 +101,7 @@ export const ReelEmbed: React.FC = () => {
             }
           });
         },
-        { threshold: 0.6 }
+        { threshold: 0.4 } // Lowered threshold for mobile viewports
       );
 
       reels.forEach(reel => observer.observe(reel));
@@ -137,16 +113,24 @@ export const ReelEmbed: React.FC = () => {
     <section 
       id="reels" 
       ref={containerRef} 
-      className="bg-black relative overflow-hidden flex flex-col md:flex-row"
+      className="bg-black relative py-0 md:py-20"
     >
       {/* ── Background Branding ──────────────────────────────────── */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none z-0">
-        <h2 className="text-[20vw] font-black uppercase text-white leading-none">
-          SOYEB<br/>VISUALS
+        <h2 className="text-[15vw] md:text-[20vw] font-black uppercase text-white leading-none text-center">
+          PREMIUM<br/>EDITS
         </h2>
       </div>
 
-      {/* ── Progress Indicators (Vertical on mobile, horizontal on desktop) ── */}
+      {/* ── Section Title (Desktop) ─────────────────────────────── */}
+      <div className="hidden md:block text-center mb-16 relative z-10">
+        <p className="text-primary font-black tracking-[0.4em] uppercase text-xs mb-4">Latest Work</p>
+        <h2 className="text-4xl md:text-6xl font-display font-black text-white capitalize">
+          Premium Cinematic <span className="text-primary">Reels</span>
+        </h2>
+      </div>
+
+      {/* ── Progress Indicators (Vertical on mobile) ── */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-3 md:hidden">
         {SITE_CONFIG.REEL_URLS.map((_, i) => (
           <div 
@@ -158,9 +142,11 @@ export const ReelEmbed: React.FC = () => {
 
       {/* ── Main Reel Container ──────────────────────────────────── */}
       <div 
+        data-lenis-prevent
         className="
-          flex-1 h-screen overflow-y-auto snap-y snap-mandatory 
-          md:flex md:flex-nowrap md:overflow-visible md:h-screen
+          flex flex-col h-[100dvh] overflow-y-auto snap-y snap-mandatory 
+          md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:gap-6 md:px-8
+          md:h-auto md:overflow-visible md:snap-none
           no-scrollbar relative z-10
         "
       >
@@ -171,22 +157,23 @@ export const ReelEmbed: React.FC = () => {
               key={i}
               data-index={i}
               className="
-                reel-slide flex-shrink-0 w-full h-full snap-start
-                md:absolute md:top-0 md:left-0 md:w-full md:h-full
+                reel-slide flex-shrink-0 w-full h-[100dvh] snap-start
+                md:relative md:h-[70vh] md:w-full md:rounded-3xl md:overflow-hidden md:shadow-2xl md:border md:border-white/10
               "
-              style={{ 
-                zIndex: SITE_CONFIG.REEL_URLS.length - i,
-                // On mobile we use relative/snap, on desktop absolute for GSAP
-                position: window.innerWidth < 768 ? 'relative' : 'absolute'
-              }}
+              style={{ zIndex: SITE_CONFIG.REEL_URLS.length - i }}
             >
-              <VideoPlayer url={url} isVisible={visibleIndex === i} />
+              <VideoPlayer 
+                url={url} 
+                // On desktop always visible/playable based on hover or always true? Let's keep them playing simultaneously on desktop or just make them hover-to-play.
+                // Simple fix: always make them accessible on desktop, or we can just pass true if desktop.
+                isVisible={window.innerWidth >= 768 ? true : visibleIndex === i} 
+              />
             </div>
           );
         })}
       </div>
 
-      {/* ── Scroll Hint (Only first slide) ───────────────────────── */}
+      {/* ── Scroll Hint (Only first slide on mobile) ───────────────────────── */}
       {visibleIndex === 0 && (
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 animate-bounce flex flex-col items-center gap-2 md:hidden">
           <p className="text-[9px] font-black text-primary uppercase tracking-[0.3em]">Swipe Up</p>

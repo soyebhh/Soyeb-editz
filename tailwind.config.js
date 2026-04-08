@@ -9,41 +9,42 @@ export default {
       },
       colors: {
         primary: {
-          DEFAULT: "#FF3131", // Neon Red/Fire
-          50: '#fff1f1',
-          100: '#ffe1e1',
-          200: '#ffc7c7',
-          300: '#ffa0a0',
-          400: '#ff6969',
-          500: '#ff3131',
-          600: '#ed1515',
-          700: '#c80d0d',
-          800: '#a50e0e',
-          900: '#881212',
+          DEFAULT: "#FFD700", // Electric Gold
+          50: '#fffbea',
+          100: '#fff3c4',
+          200: '#ffe885',
+          300: '#ffda46',
+          400: '#ffcc15',
+          500: '#ffd700', // Actual gold
+          600: '#e6b800',
+          700: '#b38f00',
+          800: '#85690b',
+          900: '#715812',
         },
         accent: {
-          DEFAULT: "#FCD34D", // Gold/Flame spark
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
-          800: '#92400e',
-          900: '#78350f',
+          DEFAULT: "#E63946", // Accent Red
+          50: '#fdf2f3',
+          100: '#fbe4e6',
+          200: '#f5c3c8',
+          300: '#efa2a9',
+          400: '#e63946', // Actual Red
+          500: '#d72331',
+          600: '#b61925',
+          700: '#99121d',
+          800: '#82131b',
+          900: '#71151b',
         },
         slate: {
-          950: '#000000', // Pure Black for depth
-          900: '#0a0a0a',
-          800: '#171717',
-        }
+          950: '#000000',
+          900: '#0A0A0A', // Deep Black 
+          800: '#1A1A1A',
+        },
+        offwhite: '#F5F5F0',
       },
       backgroundImage: {
         'ig-gradient': 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2397 75%, #323232 100%)',
-        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
-        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(255, 49, 49, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(252, 211, 77, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 49, 49, 0.1) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(0, 0, 0, 1) 0px, transparent 50%)',
+        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
+        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(255, 215, 0, 0.1) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(230, 57, 70, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 215, 0, 0.05) 0px, transparent 50%), radial-gradient(at 0% 100%, #0A0A0A 0px, transparent 50%)',
       },
       animation: {
         'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
