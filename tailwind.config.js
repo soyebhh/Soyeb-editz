@@ -8,61 +8,46 @@ export default {
         display: ['Outfit', 'sans-serif'],
       },
       colors: {
+        /* CSS-var driven so theme switching auto-propagates */
         primary: {
-          DEFAULT: "#FFD700", // Electric Gold
-          50: '#fffbea',
-          100: '#fff3c4',
-          200: '#ffe885',
-          300: '#ffda46',
-          400: '#ffcc15',
-          500: '#ffd700', // Actual gold
-          600: '#e6b800',
-          700: '#b38f00',
-          800: '#85690b',
-          900: '#715812',
+          DEFAULT: 'var(--c-primary)',
+          900: 'color-mix(in srgb, var(--c-primary) 70%, black)',
         },
         accent: {
-          DEFAULT: "#E63946", // Accent Red
-          50: '#fdf2f3',
-          100: '#fbe4e6',
-          200: '#f5c3c8',
-          300: '#efa2a9',
-          400: '#e63946', // Actual Red
-          500: '#d72331',
-          600: '#b61925',
-          700: '#99121d',
-          800: '#82131b',
-          900: '#71151b',
+          DEFAULT: 'var(--c-accent)',
+          900: 'color-mix(in srgb, var(--c-accent) 70%, black)',
         },
+        /* Static palette kept for inline references */
+        gold: '#FFD700',
+        red:  '#E63946',
         slate: {
           950: '#000000',
-          900: '#0A0A0A', // Deep Black 
+          900: '#0A0A0A',
           800: '#1A1A1A',
         },
         offwhite: '#F5F5F0',
       },
       backgroundImage: {
         'ig-gradient': 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2397 75%, #323232 100%)',
-        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01))',
-        'mesh-gradient': 'radial-gradient(at 0% 0%, rgba(255, 215, 0, 0.1) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(230, 57, 70, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255, 215, 0, 0.05) 0px, transparent 50%), radial-gradient(at 0% 100%, #0A0A0A 0px, transparent 50%)',
+        'glass-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01))',
       },
       animation: {
-        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'tilt': 'tilt 10s infinite linear',
-        'float': 'float 6s ease-in-out infinite',
+        'pulse-slow':  'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float':       'float 6s ease-in-out infinite',
+        'shimmer':     'shimmer 4s linear infinite',
+        'slide-up':    'slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) both',
       },
       keyframes: {
-        tilt: {
-          '0%, 50%, 100%': { transform: 'rotate(0deg)' },
-          '25%': { transform: 'rotate(1deg)' },
-          '75%': { transform: 'rotate(-1deg)' },
-        },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
-        }
+          '50%':      { transform: 'translateY(-20px)' },
+        },
+        slideUp: {
+          from: { opacity: '0', transform: 'translateY(24px)' },
+          to:   { opacity: '1', transform: 'translateY(0)' },
+        },
       },
     },
   },
   plugins: [],
-}
+}
