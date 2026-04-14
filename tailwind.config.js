@@ -5,27 +5,17 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Outfit', 'sans-serif'],
+        display: ['Space Grotesk', 'sans-serif'],
       },
       colors: {
-        /* CSS-var driven so theme switching auto-propagates */
-        primary: {
-          DEFAULT: 'var(--c-primary)',
-          900: 'color-mix(in srgb, var(--c-primary) 70%, black)',
-        },
         accent: {
-          DEFAULT: 'var(--c-accent)',
-          900: 'color-mix(in srgb, var(--c-accent) 70%, black)',
+          DEFAULT: '#4F8EF7',
+          dark: '#3A7BD5',
         },
-        /* Static palette kept for inline references */
-        gold: '#FFD700',
-        red:  '#E63946',
-        slate: {
-          950: '#000000',
-          900: '#0A0A0A',
-          800: '#1A1A1A',
+        dark: {
+          DEFAULT: '#0a0a0a',
+          lighter: '#1a1a1a',
         },
-        offwhite: '#F5F5F0',
       },
       backgroundImage: {
         'ig-gradient': 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2397 75%, #323232 100%)',

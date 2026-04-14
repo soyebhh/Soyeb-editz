@@ -142,31 +142,6 @@ export const TrustedCreators: React.FC = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center relative z-10 max-w-2xl mx-auto p-10 rounded-3xl reveal-up"
-          style={{ border: '1px solid var(--c-border)', background: 'linear-gradient(to bottom, color-mix(in srgb, var(--c-surface) 40%, transparent), var(--c-bg))' }}>
-          <p className="text-xl md:text-2xl font-bold text-white mb-8 font-display leading-tight">
-            Join 20+ Creators Who've Gone Viral With Soyeb Visuals
-          </p>
-          <a
-            href="https://wa.me/918828182372?text=Hey%20Soyeb!%20I'm%20a%20creator%20looking%20to%20elevate%20my%20content."
-            target="_blank"
-            rel="noopener noreferrer"
-            data-hover
-            className="btn-ripple inline-flex items-center gap-2 px-8 py-4 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all active:scale-95 mb-4"
-            style={{
-              backgroundColor: 'var(--c-primary)',
-              color: 'var(--c-bg)',
-              boxShadow: '0 10px 30px color-mix(in srgb, var(--c-primary) 15%, transparent)',
-            }}
-          >
-            <MessageCircle size={20} />
-            Work With Me → WhatsApp
-          </a>
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] mt-4" style={{ color: 'var(--c-muted)', opacity: 0.3 }}>
-            Mumbai Based • Available Pan India
-          </p>
-        </div>
       </div>
     </section>
   );
