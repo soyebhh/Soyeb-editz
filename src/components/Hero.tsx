@@ -10,7 +10,7 @@ const Hero: React.FC<HeroProps> = ({ onSwitchToEditor }) => {
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   
-  const roles = ["Editor", "Developer", "Builder", "Content Creator", "Problem Solver"];
+  const roles = ["Editor", "Developer", "Builder", "Content Creator"];
   const typingSpeed = isDeleting ? 50 : 100;
   const pauseTime = 2000;
 
@@ -47,8 +47,8 @@ const Hero: React.FC<HeroProps> = ({ onSwitchToEditor }) => {
             SOYEB<span className="text-accent">.</span>
           </h1>
           
-          <div className="mt-8 h-12 flex items-center">
-            <span className="text-2xl md:text-4xl text-white/50 font-light mr-4">I'm a</span>
+          <div className="mt-8 h-12 flex items-center font-mono">
+            <span className="text-2xl md:text-4xl text-accent font-bold mr-3">{'>'}</span>
             <span className="text-2xl md:text-4xl text-white font-medium border-r-2 border-accent pr-2 animate-pulse">
               {displayText}
             </span>
