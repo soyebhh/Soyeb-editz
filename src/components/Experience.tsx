@@ -33,7 +33,7 @@ const Experience: React.FC = () => {
           {experiences.map((exp, index) => (
             <div 
               key={exp.company}
-              className="fade-in-section relative pl-8 md:pl-12 border-l border-white/10"
+              className="fade-in-section relative pl-8 md:pl-12 border-l border-accent/20"
               style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="absolute left-0 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-accent"></div>

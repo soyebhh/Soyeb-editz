@@ -1,43 +1,77 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const CustomCursor: React.FC = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [followerPosition, setFollowerPosition] = useState({ x: 0, y: 0 });
+  const dotRef    = useRef<HTMLDivElement>(null);
+  const ringRef   = useRef<HTMLDivElement>(null);
+  const auraRef   = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
+    // Raw mouse position (dot follows immediately)
+    const dot  = dotRef.current;
+    const ring = ringRef.current;
+    const aura = auraRef.current;
+    if (!dot || !ring || !aura) return;
 
-    window.addEventListener('mousemove', moveCursor);
+    // QuickSetters for maximum perf
+    const setDotX  = gsap.quickSetter(dot,  'x', 'px');
+    const setDotY  = gsap.quickSetter(dot,  'y', 'px');
+    const setRingX = gsap.quickSetter(ring, 'x', 'px');
+    const setRingY = gsap.quickSetter(ring, 'y', 'px');
+    const setAuraX = gsap.quickSetter(aura, 'x', 'px');
+    const setAuraY = gsap.quickSetter(aura, 'y', 'px');
+
+    let mouse  = { x: 0, y: 0 };
+    let ring_  = { x: 0, y: 0 };
+    let aura_  = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+    const onMove = (e: MouseEvent) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      // Dot is instant
+      setDotX(mouse.x);
+      setDotY(mouse.y);
+    };
+    window.addEventListener('mousemove', onMove);
+
+    // Tick: ring at 0.15 lerp, aura at 0.06 lerp
+    const tick = () => {
+      ring_.x += (mouse.x - ring_.x) * 0.15;
+      ring_.y += (mouse.y - ring_.y) * 0.15;
+      setRingX(ring_.x);
+      setRingY(ring_.y);
+
+      aura_.x += (mouse.x - aura_.x) * 0.06;
+      aura_.y += (mouse.y - aura_.y) * 0.06;
+      // Offset so the 500px orb is centered on the cursor
+      setAuraX(aura_.x - 250);
+      setAuraY(aura_.y - 250);
+    };
+    gsap.ticker.add(tick);
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mousemove', onMove);
+      gsap.ticker.remove(tick);
     };
   }, []);
 
-  useEffect(() => {
-    const followCursor = () => {
-      setFollowerPosition((prev) => ({
-        x: prev.x + (position.x - prev.x) * 0.15,
-        y: prev.y + (position.y - prev.y) * 0.15,
-      }));
-      requestAnimationFrame(followCursor);
-    };
-
-    const animationId = requestAnimationFrame(followCursor);
-    return () => cancelAnimationFrame(animationId);
-  }, [position]);
-
   return (
     <>
-      <div 
-        className="custom-cursor" 
-        style={{ left: `${position.x}px`, top: `${position.y}px` }} 
+      {/* Magnetic aura orb — z-index 0, behind everything */}
+      <div ref={auraRef} className="cursor-aura" />
+
+      {/* Ring follower */}
+      <div
+        ref={ringRef}
+        className="custom-cursor-follower"
+        style={{ left: 0, top: 0 }}
       />
-      <div 
-        className="custom-cursor-follower" 
-        style={{ left: `${followerPosition.x}px`, top: `${followerPosition.y}px` }} 
+
+      {/* Dot — on top */}
+      <div
+        ref={dotRef}
+        className="custom-cursor"
+        style={{ left: 0, top: 0 }}
       />
     </>
   );

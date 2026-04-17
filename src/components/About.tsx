@@ -37,7 +37,7 @@ const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Editor Side */}
           <div className="fade-in-section">
-            <div className="rounded-xl overflow-hidden border border-[#9B7FE833] bg-[#1e1e2e] shadow-2xl font-mono text-[13px] md:text-sm">
+            <div className="rounded-xl overflow-hidden glow-border bg-[#1e1e2e] shadow-2xl font-mono text-[13px] md:text-sm">
               {/* Editor Header */}
               <div className="bg-[#181825] px-4 py-2 flex items-center gap-2 border-b border-black/20">
                 <div className="flex gap-1.5">

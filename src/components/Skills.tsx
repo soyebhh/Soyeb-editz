@@ -32,7 +32,7 @@ const Skills: React.FC = () => {
           {skills.map((skill, index) => (
             <div 
               key={skill.name}
-              className="fade-in-section p-8 rounded-2xl glass border border-white/5 flex flex-col items-center justify-center gap-4 hover:border-accent/40 group transition-all duration-300"
+              className="fade-in-section p-8 rounded-2xl glass glow-border flex flex-col items-center justify-center gap-4 group transition-all duration-300"
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="text-white/60 group-hover:text-accent transition-colors duration-300">

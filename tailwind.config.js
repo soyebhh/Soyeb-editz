@@ -9,8 +9,9 @@ export default {
       },
       colors: {
         accent: {
-          DEFAULT: '#4F8EF7',
-          dark: '#3A7BD5',
+          DEFAULT: '#7C3AED',
+          dark: '#6D28D9',
+          secondary: '#06B6D4',
         },
         dark: {
           DEFAULT: '#0a0a0a',
